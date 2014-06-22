@@ -1,14 +1,12 @@
-console.log('\'Allo \'Allo!');
-
 var authUrl      = 'https://accounts.spotify.com/authorize',
     apiUrl       = 'https://api.spotify.com/v1',
     clientId     = 'f880219b69b349bf8683bbcd1091410a',
-    redirectUri  = 'http://localhost:8000',
+    redirectUri  = 'http://localhost:9000',
     responseType = 'token',
-    scopes        = 'playlist-read-private',
+    scopes       = 'playlist-read-private',
     accessToken  = '',
-    user          = {},
-    playlist      = {};
+    user         = {},
+    playlist     = {};
 
 function displayPlaylistItems() {
   $('#results').empty();
@@ -49,9 +47,9 @@ jQuery.extend({
 $('#authorize').on('click', function() {
   var encodedUrl = authUrl + '?';
   encodedUrl += $.param({
-    clientId: clientId,
-    redirectUri: redirectUri,
-    responseType: responseType,
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    response_type: responseType,
     scope: scopes
   });
   window.location.href = encodedUrl;
@@ -75,11 +73,11 @@ $(document).on('click', '.export', function() {
 
 $(function() {
   var url = window.location.href;
-  if (url.search('#accessToken') !== -1) {
+  if (url.search('#access_token') !== -1) {
     $('#authorize').hide();
     var params = url.split('#')[1];
     params = $.getQueryParameters(params);
-    accessToken = params.accessToken;
+    accessToken = params.access_token;
     retrieveUserAndPlaylist();
   }
 });

@@ -303,6 +303,20 @@ module.exports = function (grunt) {
             }
         },
 
+        'string-replace': {
+            dist: {
+                files: {
+                  '.tmp/concat/scripts/main.js': '<%= config.app %>/scripts/main.js'
+                },
+                options: {
+                    replacements: [{
+                        pattern: 'http://localhost:8000',
+                        replacement: 'http://spotify-exporter.lancebatson.me'
+                    }]
+                }
+            }
+        },
+
         // Generates a custom Modernizr build that includes only the tests you
         // reference in your app
         modernizr: {
@@ -377,6 +391,7 @@ module.exports = function (grunt) {
         'concurrent:dist',
         'autoprefixer',
         'concat',
+        'string-replace:dist',
         'cssmin',
         'uglify',
         'copy:dist',
