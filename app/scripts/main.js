@@ -56,19 +56,23 @@ $('#authorize').on('click', function() {
 });
 
 $(document).on('click', '.export', function() {
-  var playlistId = $(this).data('id');
-  $.ajax({
-    url: apiUrl + '/users/' + user.id + '/playlists/'+ playlistId + '/tracks',
-    headers: { 'Authorization': 'Bearer ' + accessToken }
-  })
-  .then(function(result) {
-    $('#results').empty();
-    var template = Handlebars.compile($('#playlist-list-items').html());
-    $('#results').append(template(result.items));
-  })
-  .fail(function(err) {
-    console.log(err);
-  });
+  if ($(this).data('owner') === user.id || $(this).data('ispublic')) {
+    var playlistId = $(this).data('id');
+    $.ajax({
+      url: apiUrl + '/users/' + user.id + '/playlists/'+ playlistId + '/tracks',
+      headers: { 'Authorization': 'Bearer ' + accessToken }
+    })
+    .then(function(result) {
+      $('#results').empty();
+      var template = Handlebars.compile($('#playlist-list-items').html());
+      $('#results').append(template(result.items));
+    })
+    .fail(function(err) {
+      console.log(err);
+    });
+  } else {
+    alert('Unable to export private playlist from another user');
+  }
 });
 
 $(function() {

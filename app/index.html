@@ -48,7 +48,7 @@
               {{#each .}}
                 <tr>
                   <td>{{name}}</td>
-                  <td><button data-id="{{id}}" class="btn btn-spotify export">Export</button></td>
+                  <td><button data-id="{{id}}" data-owner="{{owner.id}}" data-ispublic="{{public}}" class="btn btn-spotify export">Export</button></td>
                 </tr>
               {{/each}}
             </tbody>
