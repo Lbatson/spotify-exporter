@@ -310,7 +310,7 @@ module.exports = function (grunt) {
                 },
                 options: {
                     replacements: [{
-                        pattern: 'http://localhost:8000',
+                        pattern: 'http://localhost:9000',
                         replacement: 'http://spotify-exporter.lancebatson.me'
                     }]
                 }
