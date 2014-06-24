@@ -72,7 +72,6 @@ $(document).on('click', '.export', function() {
       exportBtn.text('Download');
       exportBtn.attr('download', exportBtn.data('name') + '.csv');
       exportBtn.attr('href', encodeURI(csvContent));
-      console.log(csvContent);
     })
     .fail(function(err) {
       console.log('error: ', err);
