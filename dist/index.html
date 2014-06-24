@@ -1,6 +1,6 @@
-<!DOCTYPE html><html class=no-js><head><meta charset=utf-8><title>spotify exporter</title><meta name=description content=""><meta name=viewport content="width=device-width"><link rel="shortcut icon" href=/6df2b309.favicon.ico><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel=stylesheet href=styles/dfc57042.vendor.css><link rel=stylesheet href=styles/e02418ba.main.css><script src=scripts/vendor/c9ea6662.modernizr.js></script><body><!--[if lt IE 10]>
+<!DOCTYPE html><html class=no-js><head><meta charset=utf-8><title>spotify exporter</title><meta name=description content=""><meta name=viewport content="width=device-width"><link rel="shortcut icon" href=/favicon.ico><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel=stylesheet href=styles/dfc57042.vendor.css><link rel=stylesheet href=styles/e02418ba.main.css><script src=scripts/vendor/c9ea6662.modernizr.js></script><body><!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]--><div class=container><div class=row><div class=span12><div class=header><h1>Spotify Exporter</h1><br><button class="btn btn-spotify" id=authorize>Authorize</button></div><div id=results></div></div></div></div><script id=playlist-list type=text/x-handlebars-template><table class="table">
+        <![endif]--><div class=container><div class=row><div class=span12><div class=header><h1>Spotify Exporter</h1><br><button class="btn btn-primary btn-spotify" id=authorize>Authorize</button></div><div id=results></div></div></div></div><script id=playlist-list type=text/x-handlebars-template><table class="table">
             <thead>
               <tr>
                 <th>Playlist</th>
@@ -11,22 +11,7 @@
               {{#each .}}
                 <tr>
                   <td>{{name}}</td>
-                  <td><button data-id="{{id}}" data-owner="{{owner.id}}" data-ispublic="{{public}}" class="btn btn-spotify export">Export</button></td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table></script><script id=playlist-list-items type=text/x-handlebars-template><table class="table">
-            <thead>
-              <tr>
-                <th>Song</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each .}}
-                <tr>
-                  <td>{{track.name}}</td>
-                  <td>&nbsp;</td>
+                  <td><a href="#" data-id="{{id}}" data-name="{{name}}" data-owner="{{owner.id}}" data-ispublic="{{public}}" class="btn btn-primary btn-spotify export">Export</a></td>
                 </tr>
               {{/each}}
             </tbody>
@@ -35,4 +20,4 @@
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');</script><script src=scripts/c6b52431.plugins.js></script><script src=scripts/2db4a6ca.main.js></script>
+            ga('create','UA-XXXXX-X');ga('send','pageview');</script><script src=scripts/c6b52431.plugins.js></script><script src=scripts/3b85f1ea.main.js></script>

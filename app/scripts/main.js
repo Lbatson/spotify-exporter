@@ -28,11 +28,10 @@ function retrieveUserAndPlaylist() {
   })
   .then(function(playlistInfo) {
     playlist = playlistInfo;
-    console.log(playlistInfo);
     displayPlaylistItems();
   })
   .fail(function(err) {
-    console.log(err);
+    console.log('error: ', err);
   });
 }
 
@@ -56,19 +55,27 @@ $('#authorize').on('click', function() {
 });
 
 $(document).on('click', '.export', function() {
-  if ($(this).data('owner') === user.id || $(this).data('ispublic')) {
+  var exportBtn = $(this);
+  if (exportBtn.data('owner') === user.id || exportBtn.data('ispublic')) {
     var playlistId = $(this).data('id');
     $.ajax({
       url: apiUrl + '/users/' + user.id + '/playlists/'+ playlistId + '/tracks',
       headers: { 'Authorization': 'Bearer ' + accessToken }
     })
     .then(function(result) {
-      $('#results').empty();
-      var template = Handlebars.compile($('#playlist-list-items').html());
-      $('#results').append(template(result.items));
+      var csvContent = 'data:text/csv;charset=utf-8,';
+      result.items.forEach(function(item) {
+        csvContent += item.track.name + ',' + item.track.album.name + ',' + item.track.artists[0].name + '\n';
+      });
+      csvContent = csvContent.trim();
+      exportBtn.removeClass('btn-spotify');
+      exportBtn.text('Download');
+      exportBtn.attr('download', exportBtn.data('name') + '.csv');
+      exportBtn.attr('href', encodeURI(csvContent));
+      console.log(csvContent);
     })
     .fail(function(err) {
-      console.log(err);
+      console.log('error: ', err);
     });
   } else {
     alert('Unable to export private playlist from another user');

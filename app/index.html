@@ -30,7 +30,7 @@
               <div class="header">
                 <h1>Spotify Exporter</h1>
                 <br>
-                <button class="btn btn-spotify" id="authorize">Authorize</button>
+                <button class="btn btn-primary btn-spotify" id="authorize">Authorize</button>
               </div>
               <div id="results"></div>
             </div>
@@ -48,25 +48,7 @@
               {{#each .}}
                 <tr>
                   <td>{{name}}</td>
-                  <td><button data-id="{{id}}" data-owner="{{owner.id}}" data-ispublic="{{public}}" class="btn btn-spotify export">Export</button></td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </script>
-        <script id="playlist-list-items" type="text/x-handlebars-template">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Song</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each .}}
-                <tr>
-                  <td>{{track.name}}</td>
-                  <td>&nbsp;</td>
+                  <td><a href="#" data-id="{{id}}" data-name="{{name}}" data-owner="{{owner.id}}" data-ispublic="{{public}}" class="btn btn-primary btn-spotify export">Export</a></td>
                 </tr>
               {{/each}}
             </tbody>
