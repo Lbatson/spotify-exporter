@@ -1,6 +1,9 @@
 body {
   background-color: #121314;
 }
+label {
+  color: #88898c;
+}
 .btn-spotify {
   color:white;
   background-color: #84BD00;

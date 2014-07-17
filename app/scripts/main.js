@@ -9,9 +9,10 @@ var authUrl      = 'https://accounts.spotify.com/authorize',
     playlist     = {};
 
 function displayPlaylistItems() {
-  $('#results').empty();
+  var $results = $('#results');
+  $results.empty();
   var template = Handlebars.compile($('#playlist-list').html());
-  $('#results').append(template(playlist.items));
+  $results.append(template(playlist.items));
 }
 
 function retrieveUserAndPlaylist() {
@@ -63,15 +64,21 @@ $(document).on('click', '.export', function() {
       headers: { 'Authorization': 'Bearer ' + accessToken }
     })
     .then(function(result) {
-      var csvContent = 'data:text/csv;charset=utf-8,';
-      result.items.forEach(function(item) {
-        csvContent += item.track.name + ',' + item.track.album.name + ',' + item.track.artists[0].name + '\n';
-      });
-      csvContent = csvContent.trim();
-      exportBtn.removeClass('btn-spotify');
-      exportBtn.text('Download');
-      exportBtn.attr('download', exportBtn.data('name') + '.csv');
-      exportBtn.attr('href', encodeURI(csvContent));
+      var filetype = $('input[name=optionsRadios]:checked', '#filetypeForm').val();
+      console.log(filetype);
+      if (filetype === 'csv') {
+        var csvContent = 'data:text/csv;charset=utf-8,';
+        result.items.forEach(function(item) {
+          csvContent += item.track.name + ',' + item.track.album.name + ',' + item.track.artists[0].name + '\n';
+        });
+        csvContent = csvContent.trim();
+        exportBtn.removeClass('btn-spotify');
+        exportBtn.text('Download');
+        exportBtn.attr('download', exportBtn.data('name') + '.csv');
+        exportBtn.attr('href', encodeURI(csvContent));
+      } else if (filetype === 'xml') {
+        // TODO: implement iTunes playlist xml file format
+      }
     })
     .fail(function(err) {
       console.log('error: ', err);
